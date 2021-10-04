@@ -4,11 +4,11 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 describe('demo routes', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     return setup(pool);
   });
 
-  //POST AN EPISODE
+  //POST A TYPE
   it('stores a new type in SQL Table', async () => {
     return request(app)
       .post('/api/zoology/')
@@ -21,8 +21,24 @@ describe('demo routes', () => {
       });
   });
 
+  //GET ALL TYPES
+  it('gets all of the types from SQL Table', async () => {
+    return request(app)
+      .get('/api/zoology/')
+      .then(res => {
+        expect(res.body).toEqual([{
+          id: '1',
+          type: 'fish'
+        }]);
+      });
+  });
 
 
+
+
+
+
+  
   afterAll(() => {
     pool.end();
   });
