@@ -137,6 +137,14 @@ describe('demo routes', () => {
       });
   });
 
+  //DELETES AN ANIMAL BY ID
+  it('deletes an animal by id', async () => {
+    return request(app)
+      .delete('/api/animales/1')
+      .then(res => {
+        expect(res.body).toEqual({});
+      });
+  });
 
   
   afterAll(() => {
