@@ -51,6 +51,19 @@ describe('demo routes', () => {
       });
   });
 
+  //GETS ANIMALS BY ID
+  it('it gets animals by id', () => {
+    return request(app)
+      .get('/api/animales/1')
+      .then(res => {
+        expect(res.body).toEqual({
+          id: '1',
+          name: 'nemo',
+          species_id: '1'
+        });
+      });
+  });
+
 
 
 
