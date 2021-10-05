@@ -3,6 +3,52 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
+//DEMO TYPES
+async function saveTypes(){
+  const demoTypes = [
+    {
+      type:'lizard'
+    },
+    {
+      type:'unicorn'
+    }
+  ];
+
+  await Promise.all(
+    demoTypes.map(async (type) => {
+      await request(app).post('/api/zoology/').send(type);
+    })
+  );
+}
+
+//DEMO ANIMALS
+async function saveAnimals(){
+  const demoAnimals = [
+    {
+      name: 'itzael',
+      species_id: '2'
+    },
+    {
+      name: 'jaxon',
+      species_id: '3'
+    },
+    {
+      name: 'Montezuma',
+      species_id: '3'
+    }
+  ];
+
+  await Promise.all(
+    demoAnimals.maps(async (animal) => {
+      await request(app).post('/api/animales/').send(animal);
+    })
+  );
+}
+
+
+
+
+
 describe('demo routes', () => {
   beforeAll(() => {
     return setup(pool);
@@ -77,8 +123,19 @@ describe('demo routes', () => {
       });
   });
 
-
-
+  //UPDATES AN ANIMAL BY ID
+  it('updates an animal by id', async () => {
+    return request(app)
+      .put('/api/animales/1')
+      .send({ name: 'oscar', species_id: '1' })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id:'1',
+          name:'oscar',
+          species_id: '1'
+        });
+      });
+  });
 
 
   
