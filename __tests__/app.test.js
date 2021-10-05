@@ -65,6 +65,18 @@ describe('demo routes', () => {
   });
 
 
+  //GET ALL ANIMALS AND THEIR TYPES
+  it('gets all of the types from SQL Table', async () => {
+    return request(app)
+      .get('/api/animales/')
+      .then(res => {
+        expect(res.body).toEqual([{
+          name:'nemo',
+          type: 'fish'
+        }]);
+      });
+  });
+
 
 
 
