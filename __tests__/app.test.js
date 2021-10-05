@@ -7,6 +7,9 @@ const app = require('../lib/app');
 async function saveTypes(){
   const demoTypes = [
     {
+      type: 'fishy'
+    },
+    {
       type:'lizard'
     },
     {
@@ -25,6 +28,10 @@ async function saveTypes(){
 async function saveAnimals(){
   const demoAnimals = [
     {
+      name: 'derick',
+      species_id: '1'
+    },
+    {
       name: 'itzael',
       species_id: '2'
     },
@@ -39,7 +46,7 @@ async function saveAnimals(){
   ];
 
   await Promise.all(
-    demoAnimals.maps(async (animal) => {
+    demoAnimals.map(async (animal) => {
       await request(app).post('/api/animales/').send(animal);
     })
   );
@@ -145,6 +152,35 @@ describe('demo routes', () => {
         expect(res.body).toEqual({});
       });
   });
+
+  // COUNSTS ALL THE ANIMALS BY SPECIES
+  // it('counsts animals by species', async () => {
+  //   await saveTypes();
+  //   await saveAnimals();
+
+
+  // //   return request(app)
+  // //     .get('/api/animales/allbyspecies')
+  // //     .then(res => {
+  // //       expect(res.body).toEqual([
+  // //         {
+  // //           type: 'lizard',
+  // //           count: '1'
+  // //         },
+  // //         {
+  // //           type: 'unicorn',
+  // //           count: '2'
+  // //         },
+  // //         {
+  // //           type: 'fishy',
+  // //           count: '1'
+  // //         } 
+  // //       ]);
+  // //     });
+  // // });
+
+
+
 
   
   afterAll(() => {
