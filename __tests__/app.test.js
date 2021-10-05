@@ -34,6 +34,24 @@ describe('demo routes', () => {
   });
 
 
+  //POST A NEW ANIMAL
+  it('stores a new animal in SQL Table', async () => {
+    return request(app)
+      .post('/api/animales/')
+      .send({ 
+        name: 'nemo',
+        species_id: '1'
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          id: '1',
+          name: 'nemo',
+          species_id: '1'
+        });
+      });
+  });
+
+
 
 
 
