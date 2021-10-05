@@ -9,5 +9,6 @@ CREATE TABLE species (
 CREATE TABLE animals (
     id BIGINT GENERATED ALWAYS AS IDENTITY UNIQUE,
     name TEXT NOT NULL,
-    species_id BIGINT NOT NULL
+    species_id BIGINT NOT NULL,
+    FOREIGN KEY(species_id) REFERENCES species(id) ON DELETE CASCADE
 );
